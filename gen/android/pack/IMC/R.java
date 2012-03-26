@@ -19,7 +19,11 @@ public final class R {
         public static final int editTextPeso=0x7f050003;
         public static final int textViewAltura=0x7f050000;
         public static final int textViewPeso=0x7f050002;
-        public static final int textViewResultado=0x7f050005;
+        public static final int textViewResultAltura=0x7f050005;
+        public static final int textViewResultConselho=0x7f050009;
+        public static final int textViewResultIMC=0x7f050007;
+        public static final int textViewResultPeso=0x7f050006;
+        public static final int textViewResultStatus=0x7f050008;
     }
     public static final class layout {
         public static final int main=0x7f030000;
