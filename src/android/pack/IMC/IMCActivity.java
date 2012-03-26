@@ -32,6 +32,10 @@ public class IMCActivity extends Activity {
 				resultadoExibir.setText("Seu IMC é: " + imc);//Set o resultado no textView de ID textViewResultado
 			}
 		});
+		
+		
+		
+		
 
     }
 }
