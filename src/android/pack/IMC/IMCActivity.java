@@ -21,10 +21,5 @@ public class IMCActivity extends Activity {
 				setContentView(R.layout.resultado);
 			}
 		});
-		
-		
-		
-		
-
     }
 }
