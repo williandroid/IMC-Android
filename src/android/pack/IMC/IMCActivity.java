@@ -15,14 +15,14 @@ public class IMCActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); //Indica que o main é o xml com o visual.
         
-        final Button button = (Button) findViewById(R.id.buttonCalcular);
-		final Intent troca = new Intent();
-        troca.setClass(this, Resultado.class);
-		
-		button.setOnClickListener(new Button.OnClickListener() {
-			public void onClick(View v) {
-				startActivity(troca);
-			}
-		});
+        
+    }
+    
+    public void clique(View v)
+    {
+    	final Intent i = new Intent(); //Intanciando uma Intent para troca de telas.
+    	i.setClass(this, Resultado.class); // Informando qual será a troca de telas.
+    	startActivity(i); // Ativando a Intenet i
+    	
     }
 }

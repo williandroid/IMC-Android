@@ -19,15 +19,11 @@ public class Resultado extends Activity {
 			final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
 			final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
 			
-			
-	        String pesoValue = Peso.getText().toString();
-			String alturaValue = Altura.getText().toString();
-			float resultado = Float.parseFloat(pesoValue) / (Float.parseFloat(alturaValue) * Float.parseFloat(alturaValue));
-			String imc = String.valueOf(resultado);
-			ResultadoAltura.setText("Altura: "+alturaValue);
-			ResultadoPeso.setText("Peso: "+pesoValue);
-			ResultadoIMC.setText("IMC: "+imc);
-			
+			ResultadoAltura.setText("Altura: ");
+			ResultadoPeso.setText("Peso: ");
+			ResultadoIMC.setText("IMC: ");
+			ResultadoStatus.setText("Status: ");
+	       
 			
 	 }
 }
