@@ -7,12 +7,12 @@ import android.widget.TextView;
 
 public class Resultado extends Activity {
 	
-	 public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
+	 public void onCreate(Bundle Resultado) {
+	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
 	        
 	        final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
-			final TextView Altura = (TextView) findViewById(R.id.editTextAltura);
+			final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
 			final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
 			final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
 			final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
@@ -22,13 +22,11 @@ public class Resultado extends Activity {
 			
 	        String pesoValue = Peso.getText().toString();
 			String alturaValue = Altura.getText().toString();
-			
 			float resultado = Float.parseFloat(pesoValue) / (Float.parseFloat(alturaValue) * Float.parseFloat(alturaValue));
 			String imc = String.valueOf(resultado);
-			
-			ResultadoAltura.setText(alturaValue);
-			ResultadoPeso.setText(pesoValue);
-			ResultadoIMC.setText(imc);
+			ResultadoAltura.setText("Altura: "+alturaValue);
+			ResultadoPeso.setText("Peso: "+pesoValue);
+			ResultadoIMC.setText("IMC: "+imc);
 			
 			
 	 }
