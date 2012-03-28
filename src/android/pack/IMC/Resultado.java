@@ -1,6 +1,7 @@
 package android.pack.IMC;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,5 +27,13 @@ public class Resultado extends Activity {
 			ResultadoStatus.setText("Status: ");
 	       
 			
+	 }
+	 
+	 public void voltar(View v)
+	 {
+		 final Intent i = new Intent(); //Intanciando uma Intent para troca de telas.
+	     i.setClass(this, IMCActivity.class); // Informando qual será a troca de telas.
+	     startActivity(i);
+		 
 	 }
 }

@@ -38,5 +38,12 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:onClick="voltar"
+        android:text="Voltar" />
     
 </LinearLayout>
