@@ -20,13 +20,13 @@ public class IMCActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); //Indica que o main é o xml com o visual.
         i.setClass(this, Resultado.class); // Informando qual será a troca de telas.
-        
-    	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
-        final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
+
     }
     
     public void clique(View v)
     {
+    	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
+        final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
     	pesoValue = Peso.getText().toString();
     	alturaValue = Altura.getText().toString();
     	startActivity(i); // Ativando a Intenet i

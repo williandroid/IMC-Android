@@ -7,7 +7,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class Resultado extends Activity {
-		
+	 
+	 Float imcValue;
+	
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
@@ -17,7 +19,6 @@ public class Resultado extends Activity {
 	    	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
 	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
 	    	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
-	    	Float imcValue;
 
 	        
 	        imcValue = Float.parseFloat(IMCActivity.pesoValue)/(Float.parseFloat(IMCActivity.alturaValue) * Float.parseFloat(IMCActivity.alturaValue));			
