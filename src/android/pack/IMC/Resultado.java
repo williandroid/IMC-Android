@@ -7,21 +7,22 @@ import android.widget.TextView;
 
 public class Resultado extends Activity {
 	
+	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
+	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
+	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
+	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
+	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
+	private Float imcValue;
+	
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
-	        
-	        final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
-			final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
-			final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
-			final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
-			final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
-			final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
-			final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
+
+	        imcValue = Float.parseFloat(IMCActivity.pesoValue)/(Float.parseFloat(IMCActivity.alturaValue) * Float.parseFloat(IMCActivity.alturaValue));
 			
-			ResultadoAltura.setText("Altura: ");
-			ResultadoPeso.setText("Peso: ");
-			ResultadoIMC.setText("IMC: ");
+			ResultadoAltura.setText("Altura: "+ IMCActivity.alturaValue);
+			ResultadoPeso.setText("Peso: " + IMCActivity.pesoValue);
+			ResultadoIMC.setText("IMC: " + imcValue);
 			ResultadoStatus.setText("Status: ");
 	       
 			
