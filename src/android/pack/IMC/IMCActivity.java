@@ -13,9 +13,11 @@ public class IMCActivity extends Activity {
 
 	static String pesoValue;
 	static String alturaValue;
-	
+	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
+    final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
 	final Intent i = new Intent(); //Intanciando uma Intent para troca de telas.
-    @Override
+    
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); //Indica que o main é o xml com o visual.
@@ -25,8 +27,6 @@ public class IMCActivity extends Activity {
     
     public void clique(View v)
     {
-    	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
-        final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
     	pesoValue = Peso.getText().toString();
     	alturaValue = Altura.getText().toString();
     	startActivity(i); // Ativando a Intenet i
