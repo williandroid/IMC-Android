@@ -11,16 +11,16 @@ import android.widget.EditText;
 
 public class IMCActivity extends Activity {
 
-	static String pesoValue;
-	static String alturaValue;
+	public String pesoValue;
+	public String alturaValue;
 	
-	final Intent i = new Intent(); //Intanciando uma Intent para troca de telas.
+	final Intent i = new Intent();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main); //Indica que o main é o xml com o visual.
-        i.setClass(this, Resultado.class); // Informando qual será a troca de telas.
-
+        setContentView(R.layout.main);
+        i.setClass(this, Resultado.class);
+        
     }
     
     public void clique(View v)
@@ -29,7 +29,9 @@ public class IMCActivity extends Activity {
         final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
     	pesoValue = Peso.getText().toString();
     	alturaValue = Altura.getText().toString();
-    	startActivity(i); // Ativando a Intenet i
+    	i.putExtra("peso", pesoValue);
+    	i.putExtra("altura", alturaValue);
+    	startActivity(i); 
     	
     }
 }
