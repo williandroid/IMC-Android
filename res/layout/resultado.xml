@@ -44,6 +44,6 @@
         android:layout_width="171dp"
         android:layout_height="wrap_content"
         android:onClick="voltar"
-        android:text="Voltar" />
+        android:text="Novo Cálculo" />
     
 </LinearLayout>
