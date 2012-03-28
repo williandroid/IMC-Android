@@ -8,17 +8,19 @@ import android.widget.TextView;
 
 public class Resultado extends Activity {
 		
+	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
+	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
+	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
+	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
+	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
+	Float imcValue;
+
+	
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
 
-	    	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
-	    	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
-	    	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
-	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
-	    	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
-	    	Float imcValue;
-
+	    	
 	        
 	        imcValue = Float.parseFloat(IMCActivity.pesoValue)/(Float.parseFloat(IMCActivity.alturaValue) * Float.parseFloat(IMCActivity.alturaValue));			
 			ResultadoAltura.setText("Altura: "+ IMCActivity.alturaValue);
@@ -29,11 +31,4 @@ public class Resultado extends Activity {
 			
 	 }
 	 
-	 public void voltar(View v)
-	 {
-		 final Intent i = new Intent(); //Intanciando uma Intent para troca de telas.
-	     i.setClass(this, IMCActivity.class); // Informando qual será a troca de telas.
-	     startActivity(i);
-		 
-	 }
 }
