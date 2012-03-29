@@ -53,7 +53,7 @@ public class Resultado extends Activity {
 			ResultadoPeso.setText("Peso: " + Peso + " Kg");
 			ResultadoIMC.setText("IMC: " + imc);
 			ResultadoStatus.setText("Status: " + StatusIMC(imcValue));
-			Sugestao(Float.parseFloat(Peso), Float.parseFloat(Altura), Peso);
+			Sugestao(Float.parseFloat(Peso), Float.parseFloat(Altura), imcValue);
 	       
 			
 	 }
@@ -85,13 +85,11 @@ public class Resultado extends Activity {
 		 return msg;
 	 }
 	 
-	 public void Sugestao(Float Peso, Float Altura, String pesoFormatado)
+	 public void Sugestao(Float Peso, Float Altura, Float imc)
 	 {
 		 final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho); 
-		 Float imc;
 		 Float paramPeso = Peso; 
 		 
-		 imc = Peso / (Altura * Altura);
 		 if(imc > 24.9)
 		 {
 			 while(true)
@@ -116,6 +114,7 @@ public class Resultado extends Activity {
 		 Float ganhar = Peso - paramPeso;
 		 String perderPeso = formatoPeso.format(perder);
 		 String ganharPeso = formatoPeso.format(ganhar);
+		 String pesoFormatado = formatoPeso.format(Peso);
 		 
 		 if(Peso != paramPeso)
 		 {
