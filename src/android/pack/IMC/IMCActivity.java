@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class IMCActivity extends Activity {
@@ -25,14 +26,6 @@ public class IMCActivity extends Activity {
         //Inserindo a mudança de Activitys na Intent I
         i.setClass(this, Resultado.class);
         
-        
-        //Pegando parametros da segunda tela
-        Intent a = getIntent();
-        final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
-        final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
-        Peso.setText(a.getStringExtra("peso"));
-    	Altura.setText(a.getStringExtra("altura"));
-
     }
     
     public void clique(View v)
@@ -46,6 +39,7 @@ public class IMCActivity extends Activity {
     	i.putExtra("altura", alturaValue);
     	
     	//Starting a Intent para mudança de tela
+    	onPause();
     	startActivity(i); 
     	
     }
