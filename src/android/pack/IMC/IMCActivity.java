@@ -11,17 +11,11 @@ import android.widget.TextView;
 
 public class IMCActivity extends Activity {
 
-<<<<<<< HEAD
-	public String pesoValue; //Atributo que irá conter o valor do EditText de id "R.id.editTextPeso"
-	public String alturaValue; //Atributo que irá conter o valor do EditText de id "R.id.editTextAltura" 
-	
 	//Instanciando a classe Intent
-=======
 	public String pesoValue; // Atributo que receberá o valor que está dentro do componente EditText de id "R.id.editTextPeso".
 	public String alturaValue; // Atributo que receberá o valor que está dentro do componente EditText de id "R.id.editTextaltura".
 	
 	//Intent que receberá a troca de telas (Desta para a tela de resultado) .
->>>>>>> d871d540d48a357bfde7b6ff0790ee88bc7fc5bc
 	final Intent i = new Intent();
 	
     @Override
@@ -36,11 +30,8 @@ public class IMCActivity extends Activity {
     
     public void clique(View v)
     {
-<<<<<<< HEAD
-    	//Passando parametros para a outra tela
-=======
+    
     	//Instanciando os componentes do Layout.
->>>>>>> d871d540d48a357bfde7b6ff0790ee88bc7fc5bc
     	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
         final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
         

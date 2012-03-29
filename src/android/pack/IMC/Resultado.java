@@ -29,13 +29,10 @@ public class Resultado extends Activity {
 	    	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
 	    	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
 	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
-<<<<<<< HEAD
 	    	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
-	    	
-=======
+	   
 	    	
 	    	//Pegando os parâmetros passados da primeira activity para esta.
->>>>>>> d871d540d48a357bfde7b6ff0790ee88bc7fc5bc
 	    	Intent it = getIntent();
 	    	String Peso = it.getStringExtra("peso");
 	    	String Altura = it.getStringExtra("altura");
@@ -55,16 +52,8 @@ public class Resultado extends Activity {
 			
 	 }
 	 
-<<<<<<< HEAD
-	 public void voltarNovo(View v)
-	 {
-		 startActivity(a);
-	 }
-	 
-	 public void voltarEditar(View v)
-=======
+
 	 public void voltar(View v) //Método que responde ao click do botão "novo cálculo" .
->>>>>>> d871d540d48a357bfde7b6ff0790ee88bc7fc5bc
 	 {
 		 a.putExtra("peso", paramPeso);
 		 a.putExtra("altura", paramAltura);
