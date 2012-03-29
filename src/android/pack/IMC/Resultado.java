@@ -1,5 +1,7 @@
 package android.pack.IMC;
 
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,19 +10,20 @@ import android.widget.TextView;
 import android.pack.IMC.IMCActivity;
 
 public class Resultado extends Activity {
-	 
+	    	
 	 Float imcValue;  // Atributo que receberá o resultado do IMC.
 	 
+	 //Instâncias para formatações
+ 	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
+ 	 final DecimalFormat formatoAltura = new DecimalFormat("0.00");
+ 	 final DecimalFormat formatoIMC = new DecimalFormat("00.00");
+ 	
 	 //Intent que receberá a troca de telas (Desta para a tela principal) .
 	 final Intent a = new Intent();
 	 
-	 String paramPeso;
-	 String paramAltura;
-	 
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
-	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
-	        
+	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
 	        
 	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
 	        
@@ -34,18 +37,23 @@ public class Resultado extends Activity {
 	    	Intent it = getIntent();
 	    	String Peso = it.getStringExtra("peso");
 	    	String Altura = it.getStringExtra("altura");
-	        
-	    	paramPeso = ResultadoPeso.getText().toString();
-	    	paramPeso = ResultadoAltura.getText().toString();
 	    	
-	        imcValue = Float.parseFloat(Peso)/(Float.parseFloat(Altura) * Float.parseFloat(Altura)); //Achando o valor do IMC
-	        
+	    	//Formatando os campos Peso e Altura
+	    	Float pesoFloat = Float.parseFloat(Peso);
+	    	Float alturaFloat = Float.parseFloat(Altura);
+	    	Peso = formatoPeso.format(pesoFloat);
+	    	Altura = formatoAltura.format(alturaFloat);
+	    	
+	    	//Achando o valor do IMC e formatando o valor
+	        imcValue = Float.parseFloat(Peso)/(Float.parseFloat(Altura) * Float.parseFloat(Altura)); 
+	        String imc = formatoIMC.format(imcValue);
+	               
 	        //Inserindo nos componentes de tipo TextView os resultados.
-			ResultadoAltura.setText("Altura: "+ Altura + " metros");
-			ResultadoPeso.setText("Peso: " + Peso + " quilos");
-			ResultadoIMC.setText("IMC: " + imcValue);
+			ResultadoAltura.setText("Altura: "+ Altura + " m");
+			ResultadoPeso.setText("Peso: " + Peso + " Kg");
+			ResultadoIMC.setText("IMC: " + imc);
 			ResultadoStatus.setText("Status: " + StatusIMC(imcValue));
-			Sugestao(Float.parseFloat(Peso), Float.parseFloat(Altura));
+			Sugestao(Float.parseFloat(Peso), Float.parseFloat(Altura), Peso);
 	       
 			
 	 }
@@ -53,8 +61,6 @@ public class Resultado extends Activity {
 
 	 public void voltar(View v) //Método que responde ao click do botão "novo cálculo" .
 	 {
-		 a.putExtra("peso", paramPeso);
-		 a.putExtra("altura", paramAltura);
 		 startActivity(a);
 	 }
 	 
@@ -79,25 +85,44 @@ public class Resultado extends Activity {
 		 return msg;
 	 }
 	 
-	 public void Sugestao(Float Peso, Float Altura)
+	 public void Sugestao(Float Peso, Float Altura, String pesoFormatado)
 	 {
 		 final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho); 
 		 Float imc;
 		 Float paramPeso = Peso; 
 		 
-		 while(true)
+		 imc = Peso / (Altura * Altura);
+		 if(imc > 24.9)
 		 {
-			 imc = Peso / (Altura * Altura);
-			 if(imc > 18.5 && imc < 24.9)
-				 break;
-			 Peso = (float) (Peso - 0.1);
+			 while(true)
+			 {
+				 imc = Peso / (Altura * Altura);
+				 if(imc < 24.9)
+					 break;
+				 Peso = (float) (Peso - 0.1);
+			 }
+		 }else if(imc < 18.5)
+		 {
+			 while(true)
+			 {
+				 imc = Peso / (Altura * Altura);
+				 if(imc > 18.5)
+					 break;
+				 Peso = (float) (Peso + 0.1);
+			 }
 		 }
+		 
+		 Float perder = paramPeso - Peso;
+		 Float ganhar = Peso - paramPeso;
+		 String perderPeso = formatoPeso.format(perder);
+		 String ganharPeso = formatoPeso.format(ganhar);
+		 
 		 if(Peso != paramPeso)
 		 {
 			 if(Peso < paramPeso)
-			 	ResultadoSugestao.setText("Sugestão: \nSeu peso deveria ser "+ Peso + "\nVocê deve perder " + (paramPeso-Peso)+ " quilos");
+			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado + " Kg.\nVocê deve perder " + perderPeso + " Kg.");
 			 else
-				ResultadoSugestao.setText("Sugestão: \nSeu peso deveria ser "+ Peso + "\nVocê deve ganhar " + (Peso-paramPeso) + " quilos");
+				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado + " Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
 	}
 }
