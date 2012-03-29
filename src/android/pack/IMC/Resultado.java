@@ -28,9 +28,7 @@ public class Resultado extends Activity {
 	    	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
 	    	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
 	    	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
-	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
-	    	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
-	   
+	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);	   
 	    	
 	    	//Pegando os parâmetros passados da primeira activity para esta.
 	    	Intent it = getIntent();
