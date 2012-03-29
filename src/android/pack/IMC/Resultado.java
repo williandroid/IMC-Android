@@ -9,24 +9,33 @@ import android.pack.IMC.IMCActivity;
 
 public class Resultado extends Activity {
 	 
-	 Float imcValue;
+	 Float imcValue;  // Atributo que receberá o resultado do IMC.
+	 
+	 //Intent que receberá a troca de telas (Desta para a tela principal) .
 	 final Intent a = new Intent();
 	 
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
-	        a.setClass(this, IMCActivity.class);
 	        
+	        
+	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
+	        
+	        //Instanciando os componentes do Layout.
 	    	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
 	    	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
 	    	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
 	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
+	    	
+	    	//Pegando os parâmetros passados da primeira activity para esta.
 	    	Intent it = getIntent();
 	    	String Peso = it.getStringExtra("peso");
 	    	String Altura = it.getStringExtra("altura");
 	        
 	    	
-	        imcValue = Float.parseFloat(Peso)/(Float.parseFloat(Altura) * Float.parseFloat(Altura));			
+	        imcValue = Float.parseFloat(Peso)/(Float.parseFloat(Altura) * Float.parseFloat(Altura)); //Achando o valor do IMC
+	        
+	        //Inserindo nos componentes de tipo TextView os resultados.
 			ResultadoAltura.setText("Altura: "+ Altura + " metros");
 			ResultadoPeso.setText("Peso: " + Peso + " quilos");
 			ResultadoIMC.setText("IMC: " + imcValue);
@@ -36,7 +45,7 @@ public class Resultado extends Activity {
 			
 	 }
 	 
-	 public void voltar(View v)
+	 public void voltar(View v) //Método que responde ao click do botão "novo cálculo" .
 	 {
 		 startActivity(a);
 	 }
@@ -66,7 +75,7 @@ public class Resultado extends Activity {
 	 {
 		 final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho); 
 		 Float imc;
-		 Float paramPeso = Peso;
+		 Float paramPeso = Peso; 
 		 
 		 while(true)
 		 {
