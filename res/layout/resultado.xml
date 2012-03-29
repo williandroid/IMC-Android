@@ -39,11 +39,31 @@
         android:text=" "
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"
-        android:onClick="voltar"
-        android:text="Novo Cálculo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.72"
+            android:onClick="voltarEditar"
+            android:text="Editar Dados" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.36"
+            android:onClick="voltarNovo"
+            android:text="Novo Cálculo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
     
 </LinearLayout>

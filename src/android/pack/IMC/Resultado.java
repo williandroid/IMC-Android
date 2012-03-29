@@ -13,6 +13,9 @@ public class Resultado extends Activity {
 	 Float imcValue;
 	 final Intent a = new Intent();
 	 
+	 String paramPeso;
+	 String paramAltura;
+	 
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.
@@ -23,10 +26,13 @@ public class Resultado extends Activity {
 	    	final TextView ResultadoIMC = (TextView) findViewById(R.id.textViewResultIMC);
 	    	final TextView ResultadoStatus = (TextView) findViewById(R.id.textViewResultStatus);
 	    	final TextView ResultadoSugestao = (TextView) findViewById(R.id.textViewResultConselho);
+	    	
 	    	Intent it = getIntent();
 	    	String Peso = it.getStringExtra("peso");
 	    	String Altura = it.getStringExtra("altura");
 	        
+	    	paramPeso = ResultadoPeso.getText().toString();
+	    	paramPeso = ResultadoAltura.getText().toString();
 	    	
 	        imcValue = Float.parseFloat(Peso)/(Float.parseFloat(Altura) * Float.parseFloat(Altura));			
 			ResultadoAltura.setText("Altura: "+ Altura);
@@ -37,8 +43,15 @@ public class Resultado extends Activity {
 			
 	 }
 	 
-	 public void voltar(View v)
+	 public void voltarNovo(View v)
 	 {
+		 startActivity(a);
+	 }
+	 
+	 public void voltarEditar(View v)
+	 {
+		 a.putExtra("peso", paramPeso);
+		 a.putExtra("altura", paramAltura);
 		 startActivity(a);
 	 }
 	 
