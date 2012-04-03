@@ -15,6 +15,7 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
+        public static final int btnGravar=0x7f05000b;
         public static final int button1=0x7f05000a;
         public static final int buttonCalcular=0x7f050004;
         public static final int editTextAltura=0x7f050001;

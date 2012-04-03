@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 
 public class IMCActivity extends Activity {
-
+	
 	//Instanciando a classe Intent
 	public String pesoValue; // Atributo que receberá o valor que está dentro do componente EditText de id "R.id.editTextPeso".
 	public String alturaValue; // Atributo que receberá o valor que está dentro do componente EditText de id "R.id.editTextaltura".

@@ -65,6 +65,7 @@ public class Calculo {
 		dados += "Peso: " + getPeso();
 		dados += "\nAltura: " + getAltura();
 		dados += "\nIMC: " + getImc();
+		dados += "\n___________________";
 		
 		return dados;
 	}

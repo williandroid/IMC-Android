@@ -12,6 +12,8 @@ import android.pack.IMC.IMCActivity;
 public class Resultado extends Activity {
 	    	
 	 Float imcValue;  // Atributo que receberá o resultado do IMC.
+	 Float pesoFloat;
+	 Float alturaFloat;
 	 
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
@@ -39,8 +41,8 @@ public class Resultado extends Activity {
 	    	String Altura = it.getStringExtra("altura");
 	    	
 	    	//Formatando os campos Peso e Altura
-	    	Float pesoFloat = Float.parseFloat(Peso);
-	    	Float alturaFloat = Float.parseFloat(Altura);
+	    	pesoFloat = Float.parseFloat(Peso);
+	    	alturaFloat = Float.parseFloat(Altura);
 	    	Peso = formatoPeso.format(pesoFloat);
 	    	Altura = formatoAltura.format(alturaFloat);
 	    	
@@ -123,5 +125,17 @@ public class Resultado extends Activity {
 			 else
 				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado + " Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
+	}
+	 
+	public void Gravar()
+	{
+		DataBase banco = new DataBase(this);
+		Calculo calculo = new Calculo();
+		calculo.setPeso(pesoFloat);
+		calculo.setAltura(alturaFloat);
+		calculo.setImc(imcValue);
+		calculo.setAutor("Tassio");   //Em breve será indetificado por login;
+		calculo.setData_insercao("00/00"); //Em breve será identificado através do SO.
+		banco.inserir(calculo);
 	}
 }

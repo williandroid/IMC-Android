@@ -53,9 +53,18 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.13"
+            android:layout_weight="0.03"
             android:onClick="voltar"
             android:text="Novo Cálculo" />
+
+        <Button
+            android:id="@+id/btnGravar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.03"
+            android:onClick="Gravar"
+            android:text="Gravar" />
+
     </LinearLayout>
     
 </LinearLayout>
