@@ -4,6 +4,7 @@ import android.pack.IMC.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
@@ -25,6 +26,10 @@ public class IMCActivity extends Activity {
         //Inserindo a mudança de Activitys na Intent I
         i.setClass(this, Resultado.class);
         
+    	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
+        final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
+        Peso.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        Altura.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
     
     public void clique(View v)
