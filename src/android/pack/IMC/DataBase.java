@@ -2,6 +2,7 @@ package android.pack.IMC;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -39,6 +40,17 @@ public class DataBase {
 			}
 			
 		}
+	}
+	
+	public void inserir(Calculo calculo)
+	{
+		ContentValues objeto = new ContentValues();
+		objeto.put("autor", calculo.getAutor());
+		objeto.put("data", calculo.getData_insercao());
+		objeto.put("peso", calculo.getPeso());
+		objeto.put("altura", calculo.getAltura());
+		objeto.put("imc", calculo.getImc());
+		db.insert(NOME_TABELA, null, objeto);
 	}
 	
 	public ArrayList<Calculo> getCalculos() {
