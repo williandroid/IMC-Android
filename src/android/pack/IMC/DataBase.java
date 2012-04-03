@@ -1,7 +1,6 @@
 package android.pack.IMC;
 
 import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,11 +16,14 @@ public class DataBase {
 	public DataBase(Context ctx)
 	{
 		db = ctx.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
+		db.execSQL("CREATE TABLE IF NOT EXIST "+ NOME_TABELA + " (_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+				" autor TEXT NOT NULL, data TEXT NOT NULL, peso REAL NOT NULL, altura REAL NOT NULL, imc REAL NOT NULL");
 	}
 	
 	public ArrayList<Calculo> buscar(String autor)
 	{
-		Cursor resposta = db.query(NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"}, "autor=?", new String[]{autor}, null, null, null);
+		Cursor resposta = db.query(NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
+					"autor=?", new String[]{autor}, null, null, null);
 		if(resposta.getCount() > 0)
 		{
 			int count = 1;

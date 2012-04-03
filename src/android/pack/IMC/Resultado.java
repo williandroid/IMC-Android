@@ -130,12 +130,12 @@ public class Resultado extends Activity {
 	public void Gravar()
 	{
 		DataBase banco = new DataBase(this);
-		Calculo calculo = new Calculo();
+		/*Calculo calculo = new Calculo();
 		calculo.setPeso(pesoFloat);
 		calculo.setAltura(alturaFloat);
 		calculo.setImc(imcValue);
 		calculo.setAutor("Tassio");   //Em breve será indetificado por login;
 		calculo.setData_insercao("00/00"); //Em breve será identificado através do SO.
-		banco.inserir(calculo);
+		banco.inserir(calculo);*/
 	}
 }
