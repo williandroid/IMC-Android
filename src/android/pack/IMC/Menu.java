@@ -10,7 +10,6 @@ import android.widget.ListView;
 public class Menu  extends ListActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		final String[] itens = new String[] {"Novo Cálculo", "Histórico", "Sair"};
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itens);
@@ -22,10 +21,9 @@ public class Menu  extends ListActivity{
 		super.onListItemClick(l, v, position, id);
 		Object o = this.getListAdapter().getItem(position);
 		String item = o.toString();
-		if(item == "0")
+		if(item == "Novo Cálculo")
 		{
-			final Intent i = new Intent();
-			i.setClass(this, IMCActivity.class);
+			final Intent i = new Intent(this, IMCActivity.class);
 			startActivity(i); 
 		}
 	}
