@@ -25,11 +25,7 @@ public class IMCActivity extends Activity {
         
         //Inserindo a mudança de Activitys na Intent I
         i.setClass(this, Resultado.class);
-        
-    	final EditText Peso = (EditText) findViewById(R.id.editTextPeso);
-        final EditText Altura = (EditText) findViewById(R.id.editTextAltura);
-        Peso.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-        Altura.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+   
     }
     
     public void clique(View v)
