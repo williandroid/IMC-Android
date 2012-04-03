@@ -19,7 +19,7 @@ public class DataBase {
 		db = ctx.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
 	}
 	
-	public void buscar(String autor)
+	public ArrayList<Calculo> buscar(String autor)
 	{
 		Cursor resposta = db.query(NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"}, "autor=?", new String[]{autor}, null, null, null);
 		if(resposta.getCount() > 0)
@@ -40,6 +40,8 @@ public class DataBase {
 			}
 			
 		}
+		
+		return calculos;
 	}
 	
 	public void inserir(Calculo calculo)
