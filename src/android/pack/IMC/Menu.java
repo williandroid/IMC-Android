@@ -36,6 +36,10 @@ public class Menu  extends ListActivity{
 		{
 			final Intent i = new Intent(this, IMCActivity.class);
 			startActivity(i); 
+		}else if(item == "Histórico")
+		{
+			final Intent i = new Intent(this, Historico.class);
+			startActivity(i); 
 		}
 	}
 	

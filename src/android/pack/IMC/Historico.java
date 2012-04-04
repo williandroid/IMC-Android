@@ -20,7 +20,7 @@ public class Historico extends Activity {
 	        setContentView(view);
 	        
 	  }
-	  
+	   
 	  public void buscar()
 	  {
 		  calculos = null;
