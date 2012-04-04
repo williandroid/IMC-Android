@@ -3,6 +3,7 @@ package android.pack.IMC;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.SQLException;
@@ -140,12 +141,13 @@ public class Resultado extends Activity {
 			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
 			Menu.db.execSQL("INSERT INTO "+ Menu.NOME_TABELA + " (peso, altura, imc) VALUES (" + pesoFloat + ", " +
 					alturaFloat + ", "+ imcValue + ")");
+			final Intent i = new Intent(this, Menu.class);
+			startActivity(i); 
+			Mensagem("Sucesso", "Salvo com sucesso!", this);
 		}catch(SQLException e)
 		{
-			
+			Mensagem("Error", "Falha ao tentar salvar", this);
 		}
-		final Intent i = new Intent(this, Menu.class);
-		startActivity(i); 
 	}
 	
 	public void CriarBanco()
@@ -160,6 +162,15 @@ public class Resultado extends Activity {
 		{
 			
 		}
+	}
+	
+	public void Mensagem(String tituloAlerta, String mensagemAlerta, Context ctx)
+	{
+		AlertDialog.Builder Mensagem = new AlertDialog.Builder(ctx);
+		Mensagem.setTitle(tituloAlerta);
+		Mensagem.setMessage(mensagemAlerta);
+		Mensagem.setNeutralButton("Ok", null);
+		Mensagem.show();
 	}
 		
 }
