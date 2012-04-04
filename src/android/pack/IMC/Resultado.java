@@ -3,8 +3,12 @@ package android.pack.IMC;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.pack.IMC.IMCActivity;
@@ -26,6 +30,8 @@ public class Resultado extends Activity {
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
+	        
+	        CriarBanco();
 	        
 	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
 	        
@@ -127,15 +133,33 @@ public class Resultado extends Activity {
 		 }
 	}
 	 
-	public void Gravar()
+	public void Gravar(View v)
 	{
-		DataBase banco = new DataBase(this);
-		/*Calculo calculo = new Calculo();
-		calculo.setPeso(pesoFloat);
-		calculo.setAltura(alturaFloat);
-		calculo.setImc(imcValue);
-		calculo.setAutor("Tassio");   //Em breve será indetificado por login;
-		calculo.setData_insercao("00/00"); //Em breve será identificado através do SO.
-		banco.inserir(calculo);*/
+		try
+		{
+			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
+			Menu.db.execSQL("INSERT INTO "+ Menu.NOME_TABELA + " (peso, altura, imc) VALUES (" + pesoFloat + ", " +
+					alturaFloat + ", "+ imcValue + ")");
+		}catch(SQLException e)
+		{
+			
+		}
+		final Intent i = new Intent(this, Menu.class);
+		startActivity(i); 
 	}
+	
+	public void CriarBanco()
+	{
+		try
+		{
+			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
+			Menu.db.execSQL("CREATE TABLE IF NOT EXISTS "+ Menu.NOME_TABELA + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+					" autor TEXT, data TEXT, peso REAL NOT NULL, altura REAL NOT NULL, imc REAL NOT NULL )");
+		
+		}catch(SQLException e)
+		{
+			
+		}
+	}
+		
 }

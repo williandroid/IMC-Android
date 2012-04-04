@@ -1,4 +1,4 @@
-package android.pack.IMC;
+/*package android.pack.IMC;
 
 import java.util.ArrayList;
 import android.content.ContentValues;
@@ -11,7 +11,7 @@ public class DataBase {
 	private final String NOME_BANCO = "IMC";
 	private final String NOME_TABELA = "calculos";
 	private ArrayList<Calculo> calculos = new ArrayList<Calculo>();
-	private final SQLiteDatabase db;
+	private SQLiteDatabase db = null;
 	
 	public DataBase(Context ctx)
 	{
@@ -66,3 +66,4 @@ public class DataBase {
 		this.calculos = calculos;
 	}
 }
+*/
