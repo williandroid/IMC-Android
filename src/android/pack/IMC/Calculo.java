@@ -1,4 +1,4 @@
-/*package android.pack.IMC;
+package android.pack.IMC;
 
 public class Calculo {
 	
@@ -71,4 +71,3 @@ public class Calculo {
 	}
 
 }
-*/

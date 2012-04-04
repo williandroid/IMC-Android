@@ -1,11 +1,13 @@
 package android.pack.IMC;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ public class Resultado extends Activity {
 	 Float imcValue;  // Atributo que receberá o resultado do IMC.
 	 Float pesoFloat;
 	 Float alturaFloat;
+	 
+	ArrayList<Calculo> calculos = new ArrayList<Calculo>();
 	 
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
@@ -162,6 +166,33 @@ public class Resultado extends Activity {
 		{
 			
 		}
+	}
+	
+	public ArrayList<Calculo> buscar(String autor)
+	{
+
+		Cursor resposta = Menu.db.query(Menu.NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
+					"autor=?", new String[]{autor}, null, null, null);
+		if(resposta.getCount() > 0)
+		{
+			int count = 1;
+			resposta.moveToFirst();
+			while(count < resposta.getCount())
+			{
+				Calculo calculo = new Calculo();
+				calculo.setAutor(resposta.getString(2));
+				calculo.setData_insercao(resposta.getString(3));
+				calculo.setPeso(resposta.getFloat(4));
+				calculo.setAltura(resposta.getFloat(5));
+				calculo.setImc(resposta.getFloat(6));
+				calculos.add(calculo);
+				resposta.moveToNext();
+				count ++;
+			}
+			
+		}
+		
+		return calculos;
 	}
 	
 	public void Mensagem(String tituloAlerta, String mensagemAlerta, Context ctx)
