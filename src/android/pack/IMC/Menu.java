@@ -34,12 +34,12 @@ public class Menu  extends ListActivity{
 		String item = o.toString();
 		if(item == "Novo Cálculo")
 		{
-			final Intent i = new Intent(this, IMCActivity.class);
+			Intent i = new Intent(this, IMCActivity.class);
 			startActivity(i); 
 		}else if(item == "Histórico")
 		{
-			final Intent i = new Intent(this, Historico.class);
-			startActivity(i); 
+			Intent j = new Intent(this, Historico.class);
+			startActivity(j); 
 		}
 	}
 	

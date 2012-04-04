@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class Historico extends Activity {
-	  private ArrayList<Calculo> calculos = new ArrayList<Calculo>();
-	  private TextView textView = (TextView) findViewById(R.id.historico);
+	 ArrayList<Calculo> calculos = new ArrayList<Calculo>();
+	 
 	  public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        buscar();
-	        relatorio();
 	        setContentView(R.layout.historico);
+	        //buscar();
+	        relatorio();
+	        
 	        
 	  }
 	   
@@ -53,7 +54,8 @@ public class Historico extends Activity {
 			 Calculo aux = calculos.get(i);
 			 historico += aux.dadosCalculo();
 		 }
-		 
+		 TextView textView = (TextView) findViewById(R.id.historico);
 		 textView.setText(historico);
 	 }
+	 
 }
