@@ -1,17 +1,9 @@
 package android.pack.IMC;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.pack.IMC.IMCActivity;
@@ -22,7 +14,7 @@ public class Resultado extends Activity {
 	 Float pesoFloat;
 	 Float alturaFloat;
 	 
-	ArrayList<Calculo> calculos = new ArrayList<Calculo>();
+	 DataBase db = new DataBase(this);
 	 
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
@@ -35,8 +27,6 @@ public class Resultado extends Activity {
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
-	        
-	        CriarBanco();
 	        
 	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
 	        
@@ -132,76 +122,19 @@ public class Resultado extends Activity {
 		 if(Peso != paramPeso)
 		 {
 			 if(Peso < paramPeso)
-			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado + " Kg.\nVocê deve perder " + perderPeso + " Kg.");
+			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado +
+			 			" Kg.\nVocê deve perder " + perderPeso + " Kg.");
 			 else
-				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado + " Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
+				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado +
+						" Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
-	}
+	} 
 	 
 	public void Gravar(View v)
 	{
-		try
-		{
-			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
-			Menu.db.execSQL("INSERT INTO "+ Menu.NOME_TABELA + " (peso, altura, imc) VALUES (" + pesoFloat + ", " +
-					alturaFloat + ", "+ imcValue + ")");
-			final Intent i = new Intent(this, Menu.class);
-			startActivity(i); 
-			Mensagem("Sucesso", "Salvo com sucesso!", this);
-		}catch(SQLException e)
-		{
-			Mensagem("Error", "Falha ao tentar salvar", this);
-		}
-	}
-	
-	public void CriarBanco()
-	{
-		try
-		{
-			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
-			Menu.db.execSQL("CREATE TABLE IF NOT EXISTS "+ Menu.NOME_TABELA + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-					" autor TEXT, data TEXT, peso REAL NOT NULL, altura REAL NOT NULL, imc REAL NOT NULL )");
-		
-		}catch(SQLException e)
-		{
-			
-		}
-	}
-	
-	public ArrayList<Calculo> buscar(String autor)
-	{
-
-		Cursor resposta = Menu.db.query(Menu.NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
-					"autor=?", new String[]{autor}, null, null, null);
-		if(resposta.getCount() > 0)
-		{
-			int count = 1;
-			resposta.moveToFirst();
-			while(count < resposta.getCount())
-			{
-				Calculo calculo = new Calculo();
-				calculo.setAutor(resposta.getString(2));
-				calculo.setData_insercao(resposta.getString(3));
-				calculo.setPeso(resposta.getFloat(4));
-				calculo.setAltura(resposta.getFloat(5));
-				calculo.setImc(resposta.getFloat(6));
-				calculos.add(calculo);
-				resposta.moveToNext();
-				count ++;
-			}
-			
-		}
-		
-		return calculos;
-	}
-	
-	public void Mensagem(String tituloAlerta, String mensagemAlerta, Context ctx)
-	{
-		AlertDialog.Builder Mensagem = new AlertDialog.Builder(ctx);
-		Mensagem.setTitle(tituloAlerta);
-		Mensagem.setMessage(mensagemAlerta);
-		Mensagem.setNeutralButton("Ok", null);
-		Mensagem.show();
+		db.SalvarBanco(pesoFloat, alturaFloat, imcValue, this);
+		final Intent i = new Intent(this, Menu.class);
+		startActivity(i); 
 	}
 		
 }
