@@ -8,16 +8,13 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class Historico extends Activity {
-	  private TextView view = new TextView(this);
-	  private String historico = "";
 	  private ArrayList<Calculo> calculos = new ArrayList<Calculo>();
-	
+	  private TextView textView = (TextView) findViewById(R.id.historico);
 	  public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        buscar();
 	        relatorio();
-	        view.setText(historico);
-	        setContentView(view);
+	        setContentView(R.layout.historico);
 	        
 	  }
 	   
@@ -49,12 +46,14 @@ public class Historico extends Activity {
 	 
 	 public void relatorio()
 	 {
-		 historico = "";
+		 String historico = "";
 		 int i;
 		 for(i=0; i<calculos.size(); i++)
 		 {
 			 Calculo aux = calculos.get(i);
 			 historico += aux.dadosCalculo();
 		 }
+		 
+		 textView.setText(historico);
 	 }
 }
