@@ -3,6 +3,10 @@ package android.pack.IMC;
 import java.text.DecimalFormat;
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.database.SQLException;
+>>>>>>> a3ad93fe0b1f75a3516b684eb34368b9eeaee7d2
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,8 +18,11 @@ public class Resultado extends Activity {
 	 Float pesoFloat;
 	 Float alturaFloat;
 	 
+<<<<<<< HEAD
 	 DataBase db = new DataBase(this);
 	 
+=======
+>>>>>>> a3ad93fe0b1f75a3516b684eb34368b9eeaee7d2
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
  	 final DecimalFormat formatoAltura = new DecimalFormat("0.00");
@@ -132,9 +139,47 @@ public class Resultado extends Activity {
 	 
 	public void Gravar(View v)
 	{
+<<<<<<< HEAD
 		db.SalvarBanco(pesoFloat, alturaFloat, imcValue, this);
 		final Intent i = new Intent(this, Menu.class);
 		startActivity(i); 
+=======
+		try
+		{
+			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
+			Menu.db.execSQL("INSERT INTO "+ Menu.NOME_TABELA + " (peso, altura, imc) VALUES (" + pesoFloat + ", " +
+					alturaFloat + ", "+ imcValue + ")");
+			final Intent i = new Intent(this, Menu.class);
+			startActivity(i); 
+			Mensagem("Sucesso", "Salvo com sucesso!", this);
+		}catch(SQLException e)
+		{
+			Mensagem("Error", "Falha ao tentar salvar", this);
+		}
+	}
+	
+	public void CriarBanco()
+	{
+		try
+		{
+			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
+			Menu.db.execSQL("CREATE TABLE IF NOT EXISTS "+ Menu.NOME_TABELA + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+					" autor TEXT, data TEXT, peso REAL NOT NULL, altura REAL NOT NULL, imc REAL NOT NULL )");
+		
+		}catch(SQLException e)
+		{
+			
+		}
+	}
+	
+	public void Mensagem(String tituloAlerta, String mensagemAlerta, Context ctx)
+	{
+		AlertDialog.Builder Mensagem = new AlertDialog.Builder(ctx);
+		Mensagem.setTitle(tituloAlerta);
+		Mensagem.setMessage(mensagemAlerta);
+		Mensagem.setNeutralButton("Ok", null);
+		Mensagem.show();
+>>>>>>> a3ad93fe0b1f75a3516b684eb34368b9eeaee7d2
 	}
 		
 }
