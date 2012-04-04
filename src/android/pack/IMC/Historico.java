@@ -33,10 +33,12 @@ public class Historico extends Activity {
 	   
 	  public boolean VerificaRegistro()
 	  {
-		  cursor = Menu.db.query(Menu.NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
-	    			"autor=?", new String[]{AUTOR}, null, null, null);
+		  Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
+		  cursor = Menu.db.rawQuery("Select * from calculo", null);
+		  
 	      if(cursor.getCount() != 0)
 	      {
+	    	  	cursor.moveToFirst();
 	    		return true;	
 	    			
 	      }else
