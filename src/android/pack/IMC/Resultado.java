@@ -144,6 +144,9 @@ public class Resultado extends Activity {
 		}catch(SQLException e)
 		{
 			Mensagem("Error", "Falha ao tentar salvar", this);
+		}finally
+		{
+			Menu.db.close();
 		}
 	}
 	
@@ -158,6 +161,9 @@ public class Resultado extends Activity {
 		}catch(SQLException e)
 		{
 			
+		}finally
+		{
+			Menu.db.close();
 		}
 	}
 	

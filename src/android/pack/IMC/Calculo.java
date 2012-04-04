@@ -2,8 +2,8 @@ package android.pack.IMC;
 
 public class Calculo {
 	
-	private String autor;
-	private String data_insercao;
+	private String autor = "Tássio";
+	private String data_insercao = "00/00";
 	private float peso;
 	private float altura;
 	private float imc;
