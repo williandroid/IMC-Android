@@ -27,7 +27,7 @@ public class Historico extends Activity {
 		  {
 			  
 			  String [] coluna = new String[] {"peso", "altura", "imc"};
-			  adapter = new SimpleCursorAdapter(this, R.layout.historico, cursor, new String[] {"peso", "altura", "imc"}, new int[] {R.id.historico1, R.id.historico2, R.id.historico3});
+			  adapter = new SimpleCursorAdapter(this, R.layout.historico, cursor, coluna, new int[] {R.id.historico1, R.id.historico2, R.id.historico3});
 			  mostraDados.setAdapter(adapter);
 			  
 			  
