@@ -15,20 +15,25 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int btnGravar=0x7f05000d;
-        public static final int button1=0x7f05000c;
-        public static final int buttonCalcular=0x7f050006;
-        public static final int editTextAltura=0x7f050003;
-        public static final int editTextPeso=0x7f050005;
-        public static final int historico=0x7f050000;
-        public static final int listView=0x7f050001;
-        public static final int textViewAltura=0x7f050002;
-        public static final int textViewPeso=0x7f050004;
-        public static final int textViewResultAltura=0x7f050007;
-        public static final int textViewResultConselho=0x7f05000b;
-        public static final int textViewResultIMC=0x7f050009;
-        public static final int textViewResultPeso=0x7f050008;
-        public static final int textViewResultStatus=0x7f05000a;
+        public static final int btnGravar=0x7f050012;
+        public static final int button1=0x7f050011;
+        public static final int buttonCalcular=0x7f05000b;
+        public static final int editTextAltura=0x7f050008;
+        public static final int editTextPeso=0x7f05000a;
+        public static final int historico1=0x7f050001;
+        public static final int historico2=0x7f050003;
+        public static final int historico3=0x7f050005;
+        public static final int listView=0x7f050006;
+        public static final int textView1=0x7f050000;
+        public static final int textView2=0x7f050002;
+        public static final int textView3=0x7f050004;
+        public static final int textViewAltura=0x7f050007;
+        public static final int textViewPeso=0x7f050009;
+        public static final int textViewResultAltura=0x7f05000c;
+        public static final int textViewResultConselho=0x7f050010;
+        public static final int textViewResultIMC=0x7f05000e;
+        public static final int textViewResultPeso=0x7f05000d;
+        public static final int textViewResultStatus=0x7f05000f;
     }
     public static final class layout {
         public static final int historico=0x7f030000;
