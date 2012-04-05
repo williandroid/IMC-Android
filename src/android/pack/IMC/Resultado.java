@@ -29,8 +29,6 @@ public class Resultado extends Activity {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
 	        
-	        CriarBanco();
-	        
 	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
 	        
 	        //Instanciando os componentes do Layout.
@@ -144,23 +142,6 @@ public class Resultado extends Activity {
 		}catch(SQLException e)
 		{
 			Mensagem("Error", "Falha ao tentar salvar", this);
-		}finally
-		{
-			Menu.db.close();
-		}
-	}
-	
-	public void CriarBanco()
-	{
-		try
-		{
-			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
-			Menu.db.execSQL("CREATE TABLE IF NOT EXISTS "+ Menu.NOME_TABELA + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-					" autor TEXT, data TEXT, peso REAL NOT NULL, altura REAL NOT NULL, imc REAL NOT NULL )");
-		
-		}catch(SQLException e)
-		{
-			
 		}finally
 		{
 			Menu.db.close();
