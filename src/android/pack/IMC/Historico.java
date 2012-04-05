@@ -1,60 +1,52 @@
 package android.pack.IMC;
 
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class Historico extends Activity {
-	  private TextView view = new TextView(this);
-	  private String historico = "";
-	  private ArrayList<Calculo> calculos = new ArrayList<Calculo>();
-	
+	 String AUTOR = "Tássio";
+	 SimpleCursorAdapter adapter;
+	 Cursor cursor;
+	 ListView mostraDados;
+	 
 	  public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        buscar();
-	        relatorio();
-	        view.setText(historico);
-	        setContentView(view);
-	        
+	        setContentView(R.layout.historico);
+	        carregaDados();
+	                
 	  }
 	  
-	  public void buscar()
+	  public void carregaDados()
 	  {
-		  calculos = null;
-		  Cursor resposta = Menu.db.query(Menu.NOME_TABELA, new String[] {"_id", "peso", "altura", "imc"},
-	    			null, null, null, null, null);
-	      if(resposta.getCount() > 0)
+		  mostraDados = (ListView) findViewById(R.id.listView);
+		  if(VerificaRegistro())
+		  {
+			  
+			  String [] coluna = new String[] {"peso", "altura", "imc"};
+			  adapter = new SimpleCursorAdapter(this, R.layout.historico, cursor, new String[] {"peso", "altura", "imc"}, new int[] {R.id.historico1, R.id.historico2, R.id.historico3});
+			  mostraDados.setAdapter(adapter);
+			  
+			  
+		  }
+		  Menu.db.close();
+	  }
+	   
+	  public boolean VerificaRegistro()
+	  {
+		  Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
+		  cursor = Menu.db.rawQuery("Select * from calculo", null);
+		  
+	      if(cursor.getCount() != 0)
 	      {
-	    			int count = 1;
-	    			resposta.moveToFirst();
-	    			while(count < resposta.getCount())
-	    			{
-	    				Calculo calculo = new Calculo();
-	    				calculo.setAutor(resposta.getString(2));
-	    				calculo.setData_insercao(resposta.getString(3));
-	    				calculo.setPeso(resposta.getFloat(4));
-	    				calculo.setAltura(resposta.getFloat(5));
-	    				calculo.setImc(resposta.getFloat(6));
-	    				calculos.add(calculo);
-	    				resposta.moveToNext();
-	    				count ++;
-	    			}
+	    		return true;	
 	    			
-	      }
-	      
-	 }
-	 
-	 public void relatorio()
-	 {
-		 historico = "";
-		 int i;
-		 for(i=0; i<calculos.size(); i++)
-		 {
-			 Calculo aux = calculos.get(i);
-			 historico += aux.dadosCalculo();
-		 }
+	      }else
+	      {
+	    	  return false;
+	      }      
 	 }
 }

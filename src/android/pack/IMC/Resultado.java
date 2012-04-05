@@ -155,20 +155,9 @@ public class Resultado extends Activity {
 		}catch(SQLException e)
 		{
 			Mensagem("Error", "Falha ao tentar salvar", this);
-		}
-	}
-	
-	public void CriarBanco()
-	{
-		try
+		}finally
 		{
-			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
-			Menu.db.execSQL("CREATE TABLE IF NOT EXISTS "+ Menu.NOME_TABELA + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-					" autor TEXT, data TEXT, peso REAL NOT NULL, altura REAL NOT NULL, imc REAL NOT NULL )");
-		
-		}catch(SQLException e)
-		{
-			
+			Menu.db.close();
 		}
 	}
 	
