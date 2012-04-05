@@ -2,11 +2,10 @@ package android.pack.IMC;
 
 import java.text.DecimalFormat;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.database.SQLException;
->>>>>>> a3ad93fe0b1f75a3516b684eb34368b9eeaee7d2
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,11 +17,6 @@ public class Resultado extends Activity {
 	 Float pesoFloat;
 	 Float alturaFloat;
 	 
-<<<<<<< HEAD
-	 DataBase db = new DataBase(this);
-	 
-=======
->>>>>>> a3ad93fe0b1f75a3516b684eb34368b9eeaee7d2
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
  	 final DecimalFormat formatoAltura = new DecimalFormat("0.00");
@@ -129,21 +123,14 @@ public class Resultado extends Activity {
 		 if(Peso != paramPeso)
 		 {
 			 if(Peso < paramPeso)
-			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado +
-			 			" Kg.\nVocê deve perder " + perderPeso + " Kg.");
+			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado + " Kg.\nVocê deve perder " + perderPeso + " Kg.");
 			 else
-				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado +
-						" Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
+				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado + " Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
-	} 
+	}
 	 
 	public void Gravar(View v)
 	{
-<<<<<<< HEAD
-		db.SalvarBanco(pesoFloat, alturaFloat, imcValue, this);
-		final Intent i = new Intent(this, Menu.class);
-		startActivity(i); 
-=======
 		try
 		{
 			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
@@ -168,7 +155,6 @@ public class Resultado extends Activity {
 		Mensagem.setMessage(mensagemAlerta);
 		Mensagem.setNeutralButton("Ok", null);
 		Mensagem.show();
->>>>>>> a3ad93fe0b1f75a3516b684eb34368b9eeaee7d2
 	}
 		
 }

@@ -3,12 +3,9 @@ package android.pack.IMC;
 
 import android.app.ListActivity;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
->>>>>>> new_branch_name
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,6 +13,13 @@ import android.widget.ListView;
 
 public class Menu  extends ListActivity{
 	
+	//Banco de Dados
+	public static SQLiteDatabase db= null;
+	public static final String NOME_BANCO = "IMC";
+	public static final String NOME_TABELA = "calculo";
+	public static final String AUTOR = "Tassio";
+	public static final String DATA = "00/00";	
+	public static Cursor cursor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
