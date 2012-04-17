@@ -22,6 +22,7 @@ package android.pack.IMC;
 				db = ctx.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
 			}catch(SQLException e)
 			{
+				
 			}
 
 		}
@@ -36,8 +37,10 @@ package android.pack.IMC;
 			}
 		}
 
-		public static ArrayList<Calculo> buscar()
+		public static ArrayList<Calculo> buscar(Context ctx)
 		{
+			criarOuAbrirBanco(ctx);
+			criarOuAbrirTabela(ctx);
 			ArrayList<Calculo> calculos = new ArrayList<Calculo>();
 			Cursor resposta = db.query(NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
 						"data=?", new String[]{"12/01"}, null, null, null);
@@ -56,6 +59,7 @@ package android.pack.IMC;
 					resposta.moveToNext();
 					count ++;
 				}
+				resposta.close();
 				db.close();
 
 			}

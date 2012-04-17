@@ -28,7 +28,7 @@ public class Historico extends ListActivity {
 	  {
 		  BancoDados.criarOuAbrirBanco(this);
 		  BancoDados.criarOuAbrirTabela(this);
-		  calculos = BancoDados.buscar();
+		  calculos = BancoDados.buscar(this);
 		  
 		  int count = 1;
 		  while(count <= calculos.size())
@@ -43,6 +43,7 @@ public class Historico extends ListActivity {
 			lista.add(item);
 			count ++;
 		  }
+		  
 	  }
 	  
 	  public void exibirDados()
