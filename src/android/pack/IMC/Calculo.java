@@ -1,8 +1,7 @@
-/*package android.pack.IMC;
+package android.pack.IMC;
 
 public class Calculo {
 	
-	private String autor = "Tássio";
 	private String data_insercao = "00/00";
 	private float peso;
 	private float altura;
@@ -45,19 +44,10 @@ public class Calculo {
 	public void setData_insercao(String data_insercao) {
 		this.data_insercao = data_insercao;
 	}
-
-	public String getAutor() {
-		return autor;
-	}
-
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
 	
 	public String dadosCalculo()
 	{
 		String dados = "";
-		dados += "Autor: " + getAutor();
 		if(getData_insercao() != null)
 		{
 			dados += "Data: " + getData_insercao();
@@ -71,4 +61,3 @@ public class Calculo {
 	}
 
 }
-*/

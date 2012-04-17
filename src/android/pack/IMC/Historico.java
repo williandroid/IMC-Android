@@ -16,11 +16,11 @@ public class Historico extends Activity {
 	  public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.historico);
-	        carregaDados();
+	   //     carregaDados();
 	                
 	  }
 	  
-	  public void carregaDados()
+	/*  public void carregaDados()
 	  {
 		  mostraDados = (ListView) findViewById(R.id.listView);
 		  if(VerificaRegistro())
@@ -48,5 +48,5 @@ public class Historico extends Activity {
 	      {
 	    	  return false;
 	      }      
-	 }
+	 }*/
 }

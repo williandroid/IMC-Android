@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -22,14 +23,13 @@ public class Resultado extends Activity {
  	 final DecimalFormat formatoAltura = new DecimalFormat("0.00");
  	 final DecimalFormat formatoIMC = new DecimalFormat("00.00");
  	
-	 //Intent que receberá a troca de telas (Desta para a tela principal) .
-	 final Intent a = new Intent();
+ 	 //Base de Dados
+ 	 SQLiteDatabase db = null;
+
 	 
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
-	        
-	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
 	        
 	        //Instanciando os componentes do Layout.
 	    	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
@@ -65,6 +65,9 @@ public class Resultado extends Activity {
 
 	 public void voltar(View v) //Método que responde ao click do botão "novo cálculo" .
 	 {
+		 //Intent que receberá a troca de telas (Desta para a tela principal) .
+		 final Intent a = new Intent();
+		 a.setClass(this, IMCActivity.class);
 		 startActivity(a);
 	 }
 	 
@@ -128,33 +131,14 @@ public class Resultado extends Activity {
 				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado + " Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
 	}
-	 
+
 	public void Gravar(View v)
 	{
-		try
-		{
-			Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
-			Menu.db.execSQL("INSERT INTO "+ Menu.NOME_TABELA + " (peso, altura, imc) VALUES (" + pesoFloat + ", " +
-					alturaFloat + ", "+ imcValue + ")");
-			final Intent i = new Intent(this, Menu.class);
-			startActivity(i); 
-			Mensagem("Sucesso", "Salvo com sucesso!", this);
-		}catch(SQLException e)
-		{
-			Mensagem("Error", "Falha ao tentar salvar", this);
-		}finally
-		{
-			Menu.db.close();
-		}
-	}
-	
-	public void Mensagem(String tituloAlerta, String mensagemAlerta, Context ctx)
-	{
-		AlertDialog.Builder Mensagem = new AlertDialog.Builder(ctx);
-		Mensagem.setTitle(tituloAlerta);
-		Mensagem.setMessage(mensagemAlerta);
-		Mensagem.setNeutralButton("Ok", null);
-		Mensagem.show();
+			 BaseDados.inserir(this, db, pesoFloat, alturaFloat, imcValue);
+			 //Intent que receberá a troca de telas (Desta para a tela principal) .
+			 final Intent a = new Intent();
+			 a.setClass(this, Menu.class);
+			 startActivity(a);
 	}
 		
 }
