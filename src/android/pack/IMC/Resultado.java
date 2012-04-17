@@ -134,7 +134,7 @@ public class Resultado extends Activity {
 
 	public void Gravar(View v)
 	{
-			 BaseDados.inserir(this, db, pesoFloat, alturaFloat, imcValue);
+			 BancoDados.inserir(this, pesoFloat, alturaFloat, imcValue);
 			 //Intent que receberá a troca de telas (Desta para a tela principal) .
 			 final Intent a = new Intent();
 			 a.setClass(this, Menu.class);
