@@ -12,6 +12,8 @@ package android.pack.IMC;
 
 		static final String NOME_BANCO = "IMC";
 		static final String NOME_TABELA = "calculos";
+		static final String NOME_AUTOR = "Tassio";
+		static final String DATA_INSERCAO = "12/01";
 		static SQLiteDatabase db;
 
 		public static void criarOuAbrirBanco(Context ctx)
@@ -34,14 +36,14 @@ package android.pack.IMC;
 			}
 		}
 
-		public ArrayList<Calculo> buscar(String autor)
+		public static ArrayList<Calculo> buscar()
 		{
 			ArrayList<Calculo> calculos = new ArrayList<Calculo>();
 			Cursor resposta = db.query(NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
-						"autor=?", new String[]{autor}, null, null, null);
+						"data=?", new String[]{"12/01"}, null, null, null);
 			if(resposta.getCount() > 0)
 			{
-				int count = 1;
+				int count = 0;
 				resposta.moveToFirst();
 				while(count < resposta.getCount())
 				{
@@ -54,6 +56,7 @@ package android.pack.IMC;
 					resposta.moveToNext();
 					count ++;
 				}
+				db.close();
 
 			}
 
@@ -64,7 +67,7 @@ package android.pack.IMC;
 			criarOuAbrirBanco(ctx);
 			criarOuAbrirTabela(ctx);
 			try{
-				db.execSQL("INSERT INTO "+ NOME_TABELA + " (peso, altura, imc) VALUES (" + peso + ", " +
+				db.execSQL("INSERT INTO "+ NOME_TABELA + " (data, peso, altura, imc) VALUES ("+DATA_INSERCAO+ ", " + peso + ", " +
 						altura + ", "+ imc + ")");
 		
 			}catch(SQLException e)

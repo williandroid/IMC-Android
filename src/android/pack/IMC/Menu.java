@@ -24,10 +24,12 @@ public class Menu  extends ListActivity{
 		//String item = o.toString();
 		if(position == 0)
 		{
+			finish();
 			Intent z = new Intent(this, IMCActivity.class);
 			startActivity(z); 
 		}else if(position == 1)
 		{
+			finish();
 			Intent j = new Intent(this, Historico.class);
 			startActivity(j); 
 		}else if(position == 2)
