@@ -41,7 +41,6 @@ public class IMCActivity extends Activity {
     	i.putExtra("altura", alturaValue);
     	
     	//Starting a Intent para mudança de tela
-    	onPause();
     	startActivity(i); 
     	
     }
