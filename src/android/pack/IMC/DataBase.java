@@ -1,4 +1,4 @@
-package android.pack.IMC;
+/*package android.pack.IMC;
 
 import java.util.ArrayList;
 
@@ -86,3 +86,4 @@ public class DataBase {
 	}
 	
 }
+*/

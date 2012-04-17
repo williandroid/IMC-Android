@@ -2,12 +2,15 @@ package android.pack.IMC;
 
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class Historico extends Activity {
+public class Historico extends ListActivity {
 	 String AUTOR = "Tássio";
 	 SimpleCursorAdapter adapter;
 	 Cursor cursor;
@@ -19,7 +22,7 @@ public class Historico extends Activity {
 	        carregaDados();
 	                
 	  }
-	  
+	  	  
 	  public void carregaDados()
 	  {
 		  mostraDados = (ListView) findViewById(R.id.listView);
@@ -27,7 +30,7 @@ public class Historico extends Activity {
 		  {
 			  
 			  String [] coluna = new String[] {"peso", "altura", "imc"};
-			  adapter = new SimpleCursorAdapter(this, R.layout.historico, cursor, new String[] {"peso", "altura", "imc"}, new int[] {R.id.historico1, R.id.historico2, R.id.historico3});
+			  adapter = new SimpleCursorAdapter(this, R.layout.historico, cursor, coluna, new int[] {R.id.historico1, R.id.historico2, R.id.historico3});
 			  mostraDados.setAdapter(adapter);
 			  
 			  
