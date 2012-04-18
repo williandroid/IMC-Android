@@ -20,7 +20,11 @@ public class Historico extends ListActivity {
 	  public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        //setContentView(R.layout.historico);
-	        exibirDados();
+			  carregaDados();
+			  String[] from = new String[]{"peso", "altura", "imc"};
+			  int [] to = new int[]{android.R.id.text1, android.R.id.text2, android.R.id.button1}; 
+			  int layoutNativo = android.R.layout.two_line_list_item;
+			  setListAdapter(new SimpleAdapter(this, lista, layoutNativo, from, to));
 	                
 	  }
 	  
@@ -29,9 +33,8 @@ public class Historico extends ListActivity {
 		  BancoDados.criarOuAbrirBanco(this);
 		  BancoDados.criarOuAbrirTabela(this);
 		  calculos = BancoDados.buscar(this);
-		  
-		  int count = 1;
-		  while(count <= calculos.size())
+		  int count = 0;
+		  while(count < calculos.size())
 		  {
 			Calculo calculo = calculos.get(count);
 			HashMap<String,String> item  = new HashMap<String,String>();
@@ -44,17 +47,9 @@ public class Historico extends ListActivity {
 			count ++;
 		  }
 		  
+		  
 	  }
 	  
-	  public void exibirDados()
-	  {
-		  carregaDados();
-		  String[] from = new String[]{"autor", "data", "peso", "altura", "imc"};
-		  int [] to = new int[]{android.R.id.text1, android.R.id.text2, android.R.id.text2, android.R.id.text2, android.R.id.text2}; 
-		  int layoutNativo = android.R.layout.two_line_list_item;
-		  setListAdapter(new SimpleAdapter(this, lista, layoutNativo, from, to));
-
-	  }
 	  
 	  
 	/*  public void carregaDados()

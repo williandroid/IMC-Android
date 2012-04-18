@@ -6,14 +6,14 @@ package android.pack.IMC;
 	import android.content.Context;
 	import android.database.Cursor;
 	import android.database.SQLException;
-	import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase;
 
 	public class BancoDados {
 
 		static final String NOME_BANCO = "IMC";
 		static final String NOME_TABELA = "calculos";
 		static final String NOME_AUTOR = "Tassio";
-		static final String DATA_INSERCAO = "12/01";
+		static final String DATA_INSERCAO = "12";
 		static SQLiteDatabase db;
 
 		public static void criarOuAbrirBanco(Context ctx)
@@ -42,8 +42,8 @@ package android.pack.IMC;
 			criarOuAbrirBanco(ctx);
 			criarOuAbrirTabela(ctx);
 			ArrayList<Calculo> calculos = new ArrayList<Calculo>();
-			Cursor resposta = db.query(NOME_TABELA, new String[] {"_id", "autor", "data", "peso", "altura", "imc"},
-						"data=?", new String[]{"12/01"}, null, null, null);
+			Cursor resposta = db.query(NOME_TABELA, new String[] {"data", "peso", "altura", "imc"},
+						"data=?", new String[]{"12"}, null, null, null);
 			if(resposta.getCount() > 0)
 			{
 				int count = 0;
@@ -51,17 +51,16 @@ package android.pack.IMC;
 				while(count < resposta.getCount())
 				{
 					Calculo calculo = new Calculo();
-					calculo.setData_insercao(resposta.getString(3));
-					calculo.setPeso(resposta.getFloat(4));
-					calculo.setAltura(resposta.getFloat(5));
-					calculo.setImc(resposta.getFloat(6));
+					calculo.setData_insercao(resposta.getString(0));
+					calculo.setPeso(resposta.getFloat(1));
+					calculo.setAltura(resposta.getFloat(2));
+					calculo.setImc(resposta.getFloat(3));
 					calculos.add(calculo);
 					resposta.moveToNext();
-					count ++;
+					count ++; 
 				}
 				resposta.close();
 				db.close();
-
 			}
 
 			return calculos;
