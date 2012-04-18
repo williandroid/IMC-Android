@@ -3,6 +3,11 @@ package android.pack.IMC;
 import java.text.DecimalFormat;
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+>>>>>>> historico
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,22 +19,29 @@ public class Resultado extends Activity {
 	 Float pesoFloat;
 	 Float alturaFloat;
 	 
+<<<<<<< HEAD
 	 DataBase db = new DataBase(this);
 	 
+=======
+>>>>>>> historico
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
  	 final DecimalFormat formatoAltura = new DecimalFormat("0.00");
  	 final DecimalFormat formatoIMC = new DecimalFormat("00.00");
  	
-	 //Intent que receberá a troca de telas (Desta para a tela principal) .
-	 final Intent a = new Intent();
+ 	 //Base de Dados
+ 	 SQLiteDatabase db = null;
+
 	 
 	 public void onCreate(Bundle Resultado) {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
 	        
+<<<<<<< HEAD
 	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
 	        
+=======
+>>>>>>> historico
 	        //Instanciando os componentes do Layout.
 	    	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
 	    	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
@@ -64,6 +76,9 @@ public class Resultado extends Activity {
 
 	 public void voltar(View v) //Método que responde ao click do botão "novo cálculo" .
 	 {
+		 //Intent que receberá a troca de telas (Desta para a tela principal) .
+		 final Intent a = new Intent();
+		 a.setClass(this, IMCActivity.class);
 		 startActivity(a);
 	 }
 	 
@@ -128,6 +143,7 @@ public class Resultado extends Activity {
 				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado +
 						" Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
+<<<<<<< HEAD
 	} 
 	 
 	public void Gravar(View v)
@@ -135,6 +151,17 @@ public class Resultado extends Activity {
 		db.SalvarBanco(pesoFloat, alturaFloat, imcValue, this);
 		final Intent i = new Intent(this, Menu.class);
 		startActivity(i); 
+=======
+	}
+
+	public void Gravar(View v)
+	{
+			 BancoDados.inserir(this, pesoFloat, alturaFloat, imcValue);
+			 //Intent que receberá a troca de telas (Desta para a tela principal) .
+			 final Intent a = new Intent();
+			 a.setClass(this, Menu.class);
+			 startActivity(a);
+>>>>>>> historico
 	}
 		
 }

@@ -1,6 +1,5 @@
 package android.pack.IMC;
 
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,14 +20,23 @@ public class Menu  extends ListActivity{
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		Object o = this.getListAdapter().getItem(position);
-		String item = o.toString();
-		if(item == "Novo Cálculo")
+		//Object o = this.getListAdapter().getItem(position);
+		//String item = o.toString();
+		if(position == 0)
 		{
-			final Intent i = new Intent(this, IMCActivity.class);
-			startActivity(i); 
+			finish();
+			Intent z = new Intent(this, IMCActivity.class);
+			startActivity(z); 
+		}else if(position == 1)
+		{
+			finish();
+			Intent j = new Intent(this, Historico.class);
+			startActivity(j); 
+		}else if(position == 2)
+		{
+			finish();
 		}
-	}
-	
+		
+	}	
 	
 }
