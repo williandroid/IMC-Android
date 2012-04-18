@@ -73,7 +73,7 @@ import android.database.sqlite.SQLiteDatabase;
 			try{
 				db.execSQL("INSERT INTO "+ NOME_TABELA + " (autor, data, peso, altura, imc) VALUES ('"+ NOME_AUTOR +"', '" + DATA_INSERCAO + "','" + peso +
 						"','" + altura + "','"+ imc + "')");
-		
+				
 			}catch(SQLException e)
 			{
 			}finally
