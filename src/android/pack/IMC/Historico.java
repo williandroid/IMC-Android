@@ -4,42 +4,47 @@ package android.pack.IMC;
 import java.util.ArrayList;
 import java.util.HashMap;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 
 public class Historico extends ListActivity {
-	 /*String AUTOR = "Tássio";
-	 SimpleCursorAdapter adapter;
-	 Cursor cursor;
-	 ListView mostraDados;
-	 */
+
 	 ArrayList<HashMap<String,String>> lista = new ArrayList<HashMap<String,String>>();
-	 ArrayList<Calculo> calculos = new ArrayList<Calculo>();
+	 ArrayList<Calculo> calculoArray = new ArrayList<Calculo>();
 	
 	  public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        //setContentView(R.layout.historico);
 			  carregaDados();
-			  String[] from = new String[]{"peso", "altura", "imc"};
-			  int [] to = new int[]{android.R.id.text1, android.R.id.text2, android.R.id.button1}; 
+			  String[] from = new String[]{"data", "imc"};
+			  int [] to = new int[]{android.R.id.text1, android.R.id.text2}; 
 			  int layoutNativo = android.R.layout.two_line_list_item;
 			  setListAdapter(new SimpleAdapter(this, lista, layoutNativo, from, to));
 	                
 	  }
 	  
+	  protected void onListItemClick(ListView l, View v, int position, long id) {
+			super.onListItemClick(l, v, position, id);
+				Calculo calculo = calculoArray.get(position);
+				BancoDados.Mensagem("Tássio", "_id: "+calculo.get_id()+"\n"+
+												"Peso: " +calculo.getPeso()+"\n"+
+												"Altura: " +calculo.getAltura()+"\n", this);			
+		}	
+		
+	  
 	  public void carregaDados()
 	  {
-		  BancoDados.criarOuAbrirBanco(this);
-		  BancoDados.criarOuAbrirTabela(this);
-		  calculos = BancoDados.buscar(this);
+		  calculoArray = BancoDados.buscar(this);
 		  int count = 0;
-		  while(count < calculos.size())
+		  while(count < calculoArray.size())
 		  {
-			Calculo calculo = calculos.get(count);
+			Calculo calculo = calculoArray.get(count);
 			HashMap<String,String> item  = new HashMap<String,String>();
-			item.put("autor", "Tássio");
-			item.put("data", "00/00");
+			item.put("autor", BancoDados.NOME_AUTOR);
+			item.put("data", String.valueOf(calculo.getData_insercao()));
 			item.put("peso", String.valueOf(calculo.getPeso()));
 			item.put("altura", String.valueOf(calculo.getAltura()));
 			item.put("imc", String.valueOf(calculo.getImc()));
@@ -49,36 +54,6 @@ public class Historico extends ListActivity {
 		  
 		  
 	  }
-	  
-	  
-	  
-	/*  public void carregaDados()
-	  {
-		  mostraDados = (ListView) findViewById(R.id.listView);
-		  if(VerificaRegistro())
-		  {
-			  
-			  String [] coluna = new String[] {"peso", "altura", "imc"};
-			  adapter = new SimpleCursorAdapter(this, R.layout.historico, cursor, coluna, new int[] {R.id.historico1, R.id.historico2, R.id.historico3});
-			  mostraDados.setAdapter(adapter);
-			  
-			  
-		  }
-		  Menu.db.close();
-	  }
-	   
-	  public boolean VerificaRegistro()
-	  {
-		  Menu.db = openOrCreateDatabase(Menu.NOME_BANCO, MODE_WORLD_READABLE, null);
-		  cursor = Menu.db.rawQuery("Select * from calculo", null);
-		  
-	      if(cursor.getCount() != 0)
-	      {
-	    		return true;	
-	    			
-	      }else
-	      {
-	    	  return false;
-	      }      
-	 }*/
 }
+	  
+	 

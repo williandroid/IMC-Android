@@ -2,15 +2,11 @@ package android.pack.IMC;
 
 public class Calculo {
 	
-	private String data_insercao = "00/00";
+	private int _id;
+	private String data_insercao;
 	private float peso;
 	private float altura;
 	private float imc;
-	
-	public Calculo()
-	{
-		
-	}
 	
 	public float getAltura() {
 		
@@ -44,20 +40,13 @@ public class Calculo {
 	public void setData_insercao(String data_insercao) {
 		this.data_insercao = data_insercao;
 	}
-	
-	public String dadosCalculo()
-	{
-		String dados = "";
-		if(getData_insercao() != null)
-		{
-			dados += "Data: " + getData_insercao();
-		}
-		dados += "Peso: " + getPeso();
-		dados += "\nAltura: " + getAltura();
-		dados += "\nIMC: " + getImc();
-		dados += "\n___________________";
-		
-		return dados;
+
+	public int get_id() {
+		return _id;
+	}
+
+	public void set_id(int _id) {
+		this._id = _id;
 	}
 
 }

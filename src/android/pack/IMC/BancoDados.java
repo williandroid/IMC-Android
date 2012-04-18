@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 		static final String NOME_BANCO = "IMC";
 		static final String NOME_TABELA = "calculos";
-		static final String NOME_AUTOR = "Tassio";
+		static final String NOME_AUTOR = "Tássio";
 		static final String DATA_INSERCAO = "12";
 		static SQLiteDatabase db;
 
@@ -41,9 +41,9 @@ import android.database.sqlite.SQLiteDatabase;
 		{
 			criarOuAbrirBanco(ctx);
 			criarOuAbrirTabela(ctx);
-			ArrayList<Calculo> calculos = new ArrayList<Calculo>();
-			Cursor resposta = db.query(NOME_TABELA, new String[] {"data", "peso", "altura", "imc"},
-						"data=?", new String[]{"12"}, null, null, null);
+			ArrayList<Calculo> calculoArray = new ArrayList<Calculo>();
+			Cursor resposta = db.query(NOME_TABELA, new String[] {"_id",  "data", "peso", "altura", "imc"},
+						"autor=?", new String[]{NOME_AUTOR}, null, null, null);
 			if(resposta.getCount() > 0)
 			{
 				int count = 0;
@@ -51,11 +51,12 @@ import android.database.sqlite.SQLiteDatabase;
 				while(count < resposta.getCount())
 				{
 					Calculo calculo = new Calculo();
-					calculo.setData_insercao(resposta.getString(0));
-					calculo.setPeso(resposta.getFloat(1));
-					calculo.setAltura(resposta.getFloat(2));
-					calculo.setImc(resposta.getFloat(3));
-					calculos.add(calculo);
+					calculo.set_id(resposta.getInt(0));
+					calculo.setData_insercao(resposta.getString(1));
+					calculo.setPeso(resposta.getFloat(2));
+					calculo.setAltura(resposta.getFloat(3));
+					calculo.setImc(resposta.getFloat(4));
+					calculoArray.add(calculo);
 					resposta.moveToNext();
 					count ++; 
 				}
@@ -63,15 +64,15 @@ import android.database.sqlite.SQLiteDatabase;
 				db.close();
 			}
 
-			return calculos;
+			return calculoArray;
 		}
 
 		public static void inserir(Context ctx, Float peso, Float altura, Float imc){
 			criarOuAbrirBanco(ctx);
 			criarOuAbrirTabela(ctx);
 			try{
-				db.execSQL("INSERT INTO "+ NOME_TABELA + " (data, peso, altura, imc) VALUES ("+DATA_INSERCAO+ ", " + peso + ", " +
-						altura + ", "+ imc + ")");
+				db.execSQL("INSERT INTO "+ NOME_TABELA + " (autor, data, peso, altura, imc) VALUES ('"+ NOME_AUTOR +"', '" + DATA_INSERCAO + "','" + peso +
+						"','" + altura + "','"+ imc + "')");
 		
 			}catch(SQLException e)
 			{
