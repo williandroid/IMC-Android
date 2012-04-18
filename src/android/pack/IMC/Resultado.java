@@ -15,7 +15,6 @@ public class Resultado extends Activity {
 	 Float pesoFloat;
 	 Float alturaFloat;
 	 
-
 	 //Instâncias para formatações
  	 final DecimalFormat formatoPeso = new DecimalFormat("00.0");
  	 final DecimalFormat formatoAltura = new DecimalFormat("0.00");
@@ -29,8 +28,6 @@ public class Resultado extends Activity {
 	        super.onCreate(Resultado);
 	        setContentView(R.layout.resultado); //Indica que o main é o xml com o visual.	        
 	        
-	        a.setClass(this, IMCActivity.class); //Passando referência da troca de telas para o objeto a da classe intent.
-
 	        //Instanciando os componentes do Layout.
 	    	final TextView ResultadoAltura = (TextView) findViewById(R.id.textViewResultAltura);
 	    	final TextView ResultadoPeso = (TextView) findViewById(R.id.textViewResultPeso);
@@ -126,11 +123,9 @@ public class Resultado extends Activity {
 		 if(Peso != paramPeso)
 		 {
 			 if(Peso < paramPeso)
-			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado +
-			 			" Kg.\nVocê deve perder " + perderPeso + " Kg.");
+			 	ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no máximo "+ pesoFormatado + " Kg.\nVocê deve perder " + perderPeso + " Kg.");
 			 else
-				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado +
-						" Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
+				ResultadoSugestao.setText("Sugestão: Seu peso deveria ser no mínimo "+ pesoFormatado + " Kg.\nVocê deve ganhar " + ganharPeso + " Kg.");
 		 }
 	}
 
